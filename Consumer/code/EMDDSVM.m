@@ -17,21 +17,21 @@ threshold=-2:.001:2;
 
 %% choose the data source
 %Valence L=3
-str='ADataOut3MIL%d.mat';
-str2='ADataIn3MIL%d%c%d.mat';
+str='VDataOut3MIL%d.mat';
+str2='VDataIn3MIL%d%c%d.mat';
 lw=3;
 % %Valence L=5
-% str='DataOut5MIL%d.mat';
-% str2='DataIn5MIL%d.mat';
-% lw=5;
+%str='VDataOut5MIL%d.mat';
+%str2='VDataIn5MIL%d%c%d.mat';
+%lw=5;
 %
 % %Arousal L=3
 % str='ADataOut3MIL%d.mat';
-% str2='ADataIn3MIL%d.mat';
+% str2='ADataIn3MIL%d%c%d.mat';
 % lw=3;
 % %Arousal L=5
 % str='ADataOut5MIL%d.mat';
-% str2='ADataIn5MIL%d.mat';
+% str2='ADataIn5MIL%d%c%d.mat';
 % lw=5;
 
 for out=1:10
@@ -285,6 +285,6 @@ accDDtest_sigma=std(accDDtest);
 
 FDDmacro_tot=mean(FDDmacro);
 
-save('Results_EMDDSVM_3MIL_Arousal')
+save('Results_EMDDSVM_3MIL_Valence')
 
 

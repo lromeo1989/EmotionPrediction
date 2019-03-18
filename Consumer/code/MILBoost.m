@@ -19,10 +19,10 @@ fold2=5;
 
 %% choose the data source
 %Valence L=3
-str='VDataOut3MIL%d%c%d.mat';
+str='VDataOut3MIL%d.mat';
 lw=3;
 % %Valence L=5
-% str='DataOut5MIL%d.mat';
+% str='VDataOut5MIL%d.mat';
 % lw=5;
 % %Arousal L=3
 % str='ADataOut3MIL%d.mat';
