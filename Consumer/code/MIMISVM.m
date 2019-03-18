@@ -5,17 +5,18 @@ close all
 % addpath data
 addpath(genpath('../data'))
 
-rng(1)
+rng(3)
 fold1=10;
 fold2=5;
-BC=[0.1 0.5 1 5 25 100];
+%BC=[0.1 0.5 1 5 25 100];
+BC=[0.1 0.5 1 5 25 100 1000];
 threshold=-2:.001:2;
 
 %% choose the data source
 %Valence L=3
-str='DataOut3MIL%d.mat';
-str2='DataIn3MIL%d.mat';
-lw=3;
+str='ADataOut5MIL%d.mat';
+str2='ADataIn5MIL%d%c%d.mat';
+lw=5;
 % %Valence L=5
 % str='DataOut5MIL%d.mat';
 % str2='DataIn5MIL%d.mat';
@@ -87,7 +88,8 @@ for out=1:10
     
     for in=1:5
         %disp(in)
-        matFileName2 = sprintf(str2, in);
+        %matFileName2 = sprintf(str2, in);
+        matFileName2 = sprintf(str2,  in, '_',out);
         
         load(matFileName2)
         
@@ -189,7 +191,7 @@ for out=1:10
     ConfDDtest{out,1}=confusionmat(lab_test_out,ypred1);
     FDDmacro(out,1) = my_micro_macro( ypred1 , lab_test_out);
     
-    save('Results_MISVM')
+    %save('Results_MISVM')
     
 end
 
@@ -210,4 +212,4 @@ accDDtest_sigma=std(accDDtest);
 
 FDDmacro_tot=mean(FDDmacro);
 
-save('Results_MISVM')
+save('Results_MIMISVM_5MIL_Arousal')

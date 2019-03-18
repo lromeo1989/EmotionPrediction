@@ -2,20 +2,23 @@ clear all
 clc
 close all
 
-% addpath data
-addpath(genpath('../data'))
 
-rng(1)
+addpath('../data')
+%addpath(genpath('../data'))
+
+rng(3)
 fold1=10;
 fold2=5;
-BC=[0.1 0.5 1 5 25 100];
+%BC=[0.1 0.5 1 5 25 100];
+BC=[0.1 0.5 1 5 25 100 1000];
 threshold=-2:.001:2;
 
 %% choose the data source
 %Valence L=3
-str='DataOut3MIL%d.mat';
-str2='DataIn3MIL%d.mat';
-lw=3;
+str='ADataOut5MIL%d.mat';
+str2='ADataIn5MIL%d%c%d.mat';
+ 
+lw=5;
 % %Valence L=5
 % str='DataOut5MIL%d.mat';
 % str2='DataIn5MIL%d.mat';
@@ -88,7 +91,7 @@ for out=1:10
     for in=1:5
         
         %disp(in)
-        matFileName2 = sprintf(str2, in);
+        matFileName2 = sprintf(str2,  in, '_',out);
         
         load(matFileName2)
         
@@ -169,7 +172,7 @@ for out=1:10
     [v,l]=max(fmacroavg(:));
     [R, C]=ind2sub(size(fmacroavg),l);
     
-    
+    hypall(out)=R;
     
     MISVMmodelout=MI_Pattern_SVM(BagTrainPosNorm,BagTrainNegNorm,BC(R));
     MISVMmodelout2=fitSVMPosterior(MISVMmodelout);
@@ -197,7 +200,7 @@ for out=1:10
     scorepredtot{out,1}=score1tot;
     labtestout{out,1}=lab_test_out;
     
-    save('Results_miSVM')
+    %save('Results_miSVM')
 
 end
 
@@ -221,5 +224,5 @@ accDDtest_sigma=std(accDDtest);
 
 FDDmacro_tot=mean(FDDmacro);
 
-save('Results_miSVM')
+save('Results_miSVM_5MIL_Arousal')
 

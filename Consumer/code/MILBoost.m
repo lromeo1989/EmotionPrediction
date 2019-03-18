@@ -12,14 +12,14 @@ prwarning(0)
 % addpath data
 addpath(genpath('../data'))
 
-rng(1)
+rng(3)
 fold1=10;
 fold2=5;
 
 
 %% choose the data source
 %Valence L=3
-str='DataOut3MIL%d.mat';
+str='VDataOut3MIL%d%c%d.mat';
 lw=3;
 % %Valence L=5
 % str='DataOut5MIL%d.mat';
@@ -98,10 +98,10 @@ for out=1:10
     BagTENegNorm=[];
     BagTEPosNorm=[];
     for jj=1:numel(idneg)
-        BagTENegNorm{jj,1}=BagTEnorm{idneg,1};
+        BagTENegNorm{jj,1}=BagTEnorm{idneg(jj),1};
     end
     for jj=1:numel(idpos)
-        BagTEPosNorm{jj,1}=BagTEnorm{idpos,1};
+        BagTEPosNorm{jj,1}=BagTEnorm{idpos(jj),1};
     end
     
     totBagTest=[cell2mat(BagTENegNorm); cell2mat(BagTEPosNorm)];
@@ -131,7 +131,7 @@ for out=1:10
     ConfDDtest{out,1}=confusionmat(lab_test_out,yp2);
     FDDmacro(out,1) = my_micro_macro( yp2 , lab_test_out);
     
-    save('Results_MILBoost')
+    %save('Results_MILBoost_3MIL_Valence')
     
     
 end
@@ -152,4 +152,4 @@ accDDtest_sigma=std(accDDtest);
 
 FDDmacro_tot=mean(FDDmacro);
 
-save('Results_MILBoost')
+save('Results_MILBoost_3MIL_Valence')
